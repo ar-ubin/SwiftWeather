@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         self.client.delegate = self
         
-        self.client.weather(3, city: "Wuerzburg")
+        self.client.weather(5, city: "Wuerzburg")
     }
     
     func receiveLocation(location: Location) {
