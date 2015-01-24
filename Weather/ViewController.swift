@@ -39,12 +39,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         
         setLoadingScreen()
-     
+        initWeatherData("Würzburg")
     }
     
     override func viewDidAppear(animated:Bool) {
         super.viewDidAppear(animated)
-        editCity()
     }
     
     func initWeatherData(city: String) {
