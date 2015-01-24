@@ -20,7 +20,8 @@ class WeatherHelper {
     init(){}
 
     func weather(numberOfDays: Int, city: String) {
-        call("http://api.openweathermap.org/data/2.5/forecast/daily?q=\(city)&mode=json&units=metric&cnt=\(numberOfDays)");
+        let encodedCity = city.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
+        call("http://api.openweathermap.org/data/2.5/forecast/daily?q=\(encodedCity)&mode=json&units=metric&cnt=\(numberOfDays)");
     }
     
     func getWeatherIcon(iconCode: String) -> UIImage {
@@ -34,8 +35,9 @@ class WeatherHelper {
     }
     
     private func call(url: String) {
-        let url = url
-        let request = NSURLRequest(URL: NSURL(string: url)!)
+        let weatherUrl = url
+        
+        let request = NSURLRequest(URL: NSURL(string: weatherUrl)!)
         let currentQueue = NSOperationQueue.currentQueue();
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError?) -> Void in

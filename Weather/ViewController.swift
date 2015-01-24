@@ -23,6 +23,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func editNewCity(sender: AnyObject) {
         editCity()
     }
+    @IBAction func refreshButton(sender: UIBarButtonItem) {
+        self.initWeatherData(self.currentCity)
+    }
     
     var client = WeatherHelper()
     var forecast:[Forecast] = [Forecast]()

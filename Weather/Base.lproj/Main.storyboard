@@ -199,8 +199,14 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Weather" id="I9U-on-QpJ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="LbD-nh-qF3">
+                            <color key="tintColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <action selector="refreshButton:" destination="BYZ-38-t0r" id="Izv-wV-tkO"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="gQe-zS-HVu">
-                            <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="editNewCity:" destination="BYZ-38-t0r" id="w2U-Mr-oTK"/>
                             </connections>
@@ -221,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1198.5" y="237"/>
+            <point key="canvasLocation" x="1378.5" y="247.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iks-mu-p7t">
