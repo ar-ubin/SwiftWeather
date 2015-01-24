@@ -19,6 +19,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var weatherMainImage: UIImageView!
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var weatherImageMid: UIImageView!
     
     @IBAction func editNewCity(sender: AnyObject) {
         editCity()
@@ -64,6 +65,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.cityTemp.text = "\(Int(location.weather[0].tempDay))°"
             self.weatherMin.text = "\(Int(location.weather[0].tempMin))°"
             self.weatherMax.text = "\(Int(location.weather[0].tempMax))°"
+            
+            if location.weather[0].weatherMain == "Clear" {
+                self.weatherImageMid.image = UIImage(named: "Sunny")
+            }
+            if location.weather[0].weatherMain == "Clouds" {
+                self.weatherImageMid.image = UIImage(named: "Cloudy")
+            }
+            if location.weather[0].weatherMain == "Snow" {
+                self.weatherImageMid.image = UIImage(named: "SunnyWithClouds")
+            }
+            if location.weather[0].weatherMain == "Rain" {
+                self.weatherImageMid.image = UIImage(named: "Rain")
+            }
             
             var forecastWithoutCurrentDay:[Forecast] = location.weather
             forecastWithoutCurrentDay.removeAtIndex(0)

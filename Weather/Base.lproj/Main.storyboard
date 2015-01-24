@@ -245,6 +245,7 @@
                         <outlet property="cityWeather" destination="oEv-LR-YpM" id="Vyw-qE-LUc"/>
                         <outlet property="tableView" destination="gzm-cy-C98" id="3jD-2c-KUe"/>
                         <outlet property="weatherImage" destination="Mm9-AJ-EzF" id="SL5-Cz-DmG"/>
+                        <outlet property="weatherImageMid" destination="h8T-qz-zDu" id="DpL-We-jba"/>
                         <outlet property="weatherMainImage" destination="h8T-qz-zDu" id="s63-RT-w0Q"/>
                         <outlet property="weatherMax" destination="gdD-Qa-ps4" id="weX-9b-Mnn"/>
                         <outlet property="weatherMin" destination="V8e-Fa-L6v" id="fzK-UA-NUx"/>
