@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         self.client.delegate = self
         
-        self.client.weather(5, city: "Wuerzburg")
+        self.client.weather(5, city: "Dubai")
     }
     
     func receiveLocation(location: Location) {
@@ -54,6 +54,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.forecast = forecastWithoutCurrentDay
             self.tableView.reloadData()
+            
+            
+//            println(location.weather[0].weatherMain)
+//            //Clouds Rain #4E83A7
+//            //Sunny #74C3FA
+//            //Snow #E9ECEF
+//            if location.weather[0].weatherMain == "Sunny" {
+//            self.view.backgroundColor = UIColor(red: 0x74/255, green: 0xc3/255, blue: 0xFa/255, alpha: 1.0)
+//            }
+//            if (location.weather[0].weatherMain == "Clouds") || (location.weather[0].weatherMain == "Rain") {
+//            self.view.backgroundColor = UIColor(red: 0x4e/255, green: 0x83/255, blue: 0xa7/255, alpha: 1.0)
+//            }
+//            if location.weather[0].weatherMain == "Snow" {
+//                self.view.backgroundColor = UIColor(red: 0xe9/255, green: 0xec/255, blue: 0xef/255, alpha: 1.0)
+//            }
+
+
         }
     }
     
