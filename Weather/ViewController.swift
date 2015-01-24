@@ -39,6 +39,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         
         setLoadingScreen()
+     
+    }
+    
+    override func viewDidAppear(animated:Bool) {
+        super.viewDidAppear(animated)
         editCity()
     }
     

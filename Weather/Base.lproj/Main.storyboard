@@ -168,6 +168,26 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Dl-A5-7k5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="UZc-tf-qBi"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Weather" id="Xv6-4C-vpW">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="L4p-qd-fHo">
+                                            <connections>
+                                                <action selector="refreshButton:" destination="BYZ-38-t0r" id="xa0-Us-l2t"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="uMq-HN-rnw">
+                                            <connections>
+                                                <action selector="editNewCity:" destination="BYZ-38-t0r" id="jXb-NB-p8C"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.34509803921568627" green="0.58431372549019611" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -181,6 +201,7 @@
                             <constraint firstItem="V8e-Fa-L6v" firstAttribute="leading" secondItem="QjY-dd-D2v" secondAttribute="trailing" constant="1" id="F1d-cE-n1D"/>
                             <constraint firstItem="feY-MX-gG9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GVb-kL-v3Y"/>
                             <constraint firstItem="feY-MX-gG9" firstAttribute="top" secondItem="gdD-Qa-ps4" secondAttribute="bottom" constant="8" id="Jjt-OI-WHp"/>
+                            <constraint firstItem="3Dl-A5-7k5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="MjH-7I-dq0"/>
                             <constraint firstItem="Qpn-H1-ubS" firstAttribute="leading" secondItem="V8e-Fa-L6v" secondAttribute="trailing" constant="10" id="WsI-YO-Q9T"/>
                             <constraint firstItem="CVK-q4-toP" firstAttribute="centerX" secondItem="oEv-LR-YpM" secondAttribute="centerX" constant="0.25" id="X9j-0Q-Bti"/>
                             <constraint firstItem="h8T-qz-zDu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="XTf-Qg-3tJ"/>
@@ -189,6 +210,7 @@
                             <constraint firstAttribute="trailing" secondItem="gzm-cy-C98" secondAttribute="trailing" id="aBt-SV-A4g"/>
                             <constraint firstItem="6ZW-oC-Di9" firstAttribute="top" secondItem="oEv-LR-YpM" secondAttribute="bottom" constant="40" id="alW-vL-WEI"/>
                             <constraint firstAttribute="trailing" secondItem="feY-MX-gG9" secondAttribute="trailing" id="bao-wt-pIo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3Dl-A5-7k5" secondAttribute="trailing" constant="-16" id="dWL-mg-VN3"/>
                             <constraint firstItem="oEv-LR-YpM" firstAttribute="top" secondItem="CVK-q4-toP" secondAttribute="bottom" constant="7.5" id="fT3-IF-04k"/>
                             <constraint firstAttribute="centerY" secondItem="feY-MX-gG9" secondAttribute="centerY" constant="-100" id="oGg-n0-uHW"/>
                             <constraint firstItem="feY-MX-gG9" firstAttribute="top" secondItem="Mm9-AJ-EzF" secondAttribute="bottom" id="pXz-dg-Ei8"/>
@@ -196,6 +218,7 @@
                             <constraint firstItem="gdD-Qa-ps4" firstAttribute="leading" secondItem="Qpn-H1-ubS" secondAttribute="trailing" constant="0.5" id="qoc-U7-SXB"/>
                             <constraint firstItem="feY-MX-gG9" firstAttribute="top" secondItem="Qpn-H1-ubS" secondAttribute="bottom" constant="8" id="sL0-d7-pmp"/>
                             <constraint firstItem="gzm-cy-C98" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="t9m-wv-sYR"/>
+                            <constraint firstItem="3Dl-A5-7k5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="vpe-mU-bB7"/>
                             <constraint firstItem="Mm9-AJ-EzF" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="wkH-Dp-nLL"/>
                             <constraint firstAttribute="trailing" secondItem="Mm9-AJ-EzF" secondAttribute="trailing" id="ykk-FQ-FaF"/>
                         </constraints>
@@ -205,6 +228,8 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="M0c-hw-rZj"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="cityLabel" destination="CVK-q4-toP" id="WIc-oz-OI1"/>
                         <outlet property="cityTemp" destination="6ZW-oC-Di9" id="pdM-In-ea6"/>
@@ -218,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="397" y="335"/>
+            <point key="canvasLocation" x="1402" y="348"/>
         </scene>
     </scenes>
     <resources>
