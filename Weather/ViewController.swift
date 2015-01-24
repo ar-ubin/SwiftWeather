@@ -11,7 +11,6 @@ import MapKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WeatherHelperProtocol {
     
-    
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var cityWeather: UILabel!
     @IBOutlet weak var cityTemp: UILabel!
@@ -21,26 +20,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBAction func editNewCity(sender: AnyObject) {
+        editCity()
+    }
+    
     var client = WeatherHelper()
     var forecast:[Forecast] = [Forecast]()
+    var currentCity: String = ""
+    var loadScreen: LoadSreen!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.delegate = self
         tableView.dataSource = self
-        initWeatherData()
+        
+        setLoadingScreen()
+        editCity()
     }
     
-    func initWeatherData() {
-            
-        self.client.delegate = self
+    func initWeatherData(city: String) {
+       
+        showLoadingScreen()
         
-        self.client.weather(3, city: "Wuerzburg")
+        self.client.delegate = self
+        self.client.weather(5, city: city)
     }
     
     func receiveLocation(location: Location) {
-        
+
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             
             self.cityLabel.text = location.name
@@ -54,7 +62,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.forecast = forecastWithoutCurrentDay
             self.tableView.reloadData()
+            
+            self.hideLoadingScreen()
         }
+    }
+    
+    func receiveError() {
+        showErrorMessage()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,8 +77,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("forecastCell") as ForecastCell
-        
-        // this is how you extract values from a tuple
+      
         var day = forecast[indexPath.row]
 
         cell.weather.text = "\(day.dayOfWeek.rawValue)"
@@ -81,9 +94,75 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         println("You selected cell #\(indexPath.row)!")
     }
     
+    func showErrorMessage(){
+        
+        let alertController = UIAlertController(title: "Error", message:
+            "Fail to load Data!", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let reloadAction = UIAlertAction(title: "Reload", style: .Default) { (action) in
+            self.initWeatherData(self.currentCity)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { (_) in }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(reloadAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func editCity(){
+        
+        let alertController = UIAlertController(title: "Edit City", message:
+            "Access weather for entered City", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let editAction = UIAlertAction(title: "Edit", style: .Default) { (_) in
+            let loginTextField = alertController.textFields![0] as UITextField
+            
+            self.currentCity = loginTextField.text
+            self.initWeatherData(self.currentCity)
+        }
+        editAction.enabled = false
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "City"
+            
+            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
+                editAction.enabled = textField.text != ""
+            }
+        }
+    
+        alertController.addAction(editAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    override func awakeFromNib() {
+        let array = NSBundle.mainBundle().loadNibNamed("LoadScreen", owner: self, options: nil)
+        self.loadScreen = array[0] as LoadSreen
+    }
+    
+    func setLoadingScreen(){
+        
+        view.addSubview(loadScreen)
+        
+        loadScreen.frame = view.frame
+        loadScreen.backgroundColor = loadScreen.backgroundColor?.colorWithAlphaComponent(0.9)
+        loadScreen.alpha = 0.0
+    }
+    
+    func hideLoadingScreen(){
+        loadScreen.indicator.stopAnimating()
+        loadScreen.alpha = 0.0
+    }
+    
+    func showLoadingScreen(){
+        loadScreen.indicator.startAnimating()
+        loadScreen.alpha = 1.0
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 

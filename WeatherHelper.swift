@@ -5,12 +5,12 @@
 //  Created by student on 21.01.15.
 //  Copyright (c) 2015 student. All rights reserved.
 //
-
 import UIKit
 
 protocol WeatherHelperProtocol {
     
     func receiveLocation(location: Location)
+    func receiveError()
 }
 
 class WeatherHelper {
@@ -42,12 +42,19 @@ class WeatherHelper {
             var error: NSError? = error
             
             if error != nil {
+                self.delegate?.receiveError()
                 return
             }
             
             let json = JSON(data: data)
             
             let location = self.parseJsonToLocation(json)
+            
+            if(location.weather.isEmpty){
+                self.delegate?.receiveError()
+                return
+            }
+            
             self.delegate?.receiveLocation(location)
         }
     }
