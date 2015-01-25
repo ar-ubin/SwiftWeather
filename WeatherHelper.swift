@@ -86,7 +86,7 @@ class WeatherHelper {
             let components = calendar.components(.WeekdayCalendarUnit, fromDate: date)
             let weekDay = components.weekday
             
-            var forecast = Forecast(dt: date, dayOfWeek: weekDay, tempDay: tempDay, tempNight: tempNight, tempMax: tempMax, tempMin: tempMin, pressure: pressure, humidity: humidity, weatherId: weatherId, weatherMain: waetherMain, weatherDesc: weatherDesc, weatherIcon: weatherIcon)
+            var forecast = Forecast(dt: date, dayOfWeek: weekDay, tempDay: tempDay, tempNight: tempNight, tempMax: tempMax, tempMin: tempMin, pressure: pressure, humidity: humidity, weatherId: weatherId, weatherMain: waetherMain,weatherImageMain: waetherMain, weatherDesc: weatherDesc, weatherIcon: weatherIcon)
             
             forecasts.append(forecast)
         }

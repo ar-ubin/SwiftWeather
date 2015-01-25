@@ -70,19 +70,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.weatherMax.text = "\(Int(location.weather[0].tempMax))°"
             self.weatherPressure.text = "\(Int(location.weather[0].pressure))hPa"
             self.weatherHumidity.text = "\(Int(location.weather[0].humidity))%"
-            
-            if location.weather[0].weatherMain == "Clear" {
-                self.weatherImageMid.image = UIImage(named: "Sunny")
-            }
-            if location.weather[0].weatherMain == "Clouds" {
-                self.weatherImageMid.image = UIImage(named: "Cloudy")
-            }
-            if location.weather[0].weatherMain == "Snow" {
-                self.weatherImageMid.image = UIImage(named: "SunnyWithClouds")
-            }
-            if location.weather[0].weatherMain == "Rain" {
-                self.weatherImageMid.image = UIImage(named: "Rainy")
-            }
+            self.weatherImageMid.image = location.weather[0].weatherImageMain.img
             
             var forecastWithoutCurrentDay:[Forecast] = location.weather
             forecastWithoutCurrentDay.removeAtIndex(0)
@@ -117,7 +105,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        println("You selected cell #\(indexPath.row)!")
     }
     
     func showErrorMessage(){
@@ -129,8 +116,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.initWeatherData(self.currentCity)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { (_) in }
-        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { (_) in
+            self.editCity()
+        }
         alertController.addAction(cancelAction)
         alertController.addAction(reloadAction)
         

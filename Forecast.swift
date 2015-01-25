@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class Forecast: NSObject {
     
     let dt: NSDate
@@ -23,6 +24,7 @@ class Forecast: NSObject {
     
     let weatherId: Int
     let weatherMain: String
+    let weatherImageMain: WeatherMain
     let weatherDesc: String
     let weatherIcon: String
     
@@ -36,6 +38,7 @@ class Forecast: NSObject {
         humidity: Int,
         weatherId: Int,
         weatherMain: String,
+        weatherImageMain: String,
         weatherDesc: String,
         weatherIcon: String ) {
             
@@ -69,6 +72,22 @@ class Forecast: NSObject {
             default:
                 self.dayOfWeek = .Monday
             }
+            switch weatherImageMain {
+            case "Rain":
+                self.weatherImageMain = .Rain
+            case "Clouds":
+                self.weatherImageMain = .Clouds
+            case "Sun":
+                self.weatherImageMain = .Sun
+            case "Snow":
+                self.weatherImageMain = .Snow
+            case "Clear":
+                self.weatherImageMain = .Sun
+            default:
+                self.weatherImageMain = WeatherMain.SunnyWithClouds
+            }
+        }
+
     }
     
     enum DayOfWeek: String {
@@ -81,5 +100,14 @@ class Forecast: NSObject {
         case Saturday = "Saturday"
         
         
+    }
+enum WeatherMain: String {
+    case Rain = "Rainy"
+    case Clouds = "Cloudy"
+    case Sun = "Sunny"
+    case Snow = "Snow"
+    case SunnyWithClouds = "SunnyWithClouds"
+    var img: UIImage {
+        return UIImage(named: self.rawValue)!
     }
 }
