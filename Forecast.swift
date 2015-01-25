@@ -72,6 +72,7 @@ class Forecast: NSObject {
             default:
                 self.dayOfWeek = .Monday
             }
+            
             switch weatherImageMain {
             case "Rain":
                 self.weatherImageMain = .Rain
@@ -101,13 +102,14 @@ class Forecast: NSObject {
         
         
     }
-enum WeatherMain: String {
-    case Rain = "Rainy"
-    case Clouds = "Cloudy"
-    case Sun = "Sunny"
-    case Snow = "Snow"
-    case SunnyWithClouds = "SunnyWithClouds"
-    var img: UIImage {
-        return UIImage(named: self.rawValue)!
+
+    enum WeatherMain: String {
+        case Rain = "Rainy"
+        case Clouds = "Cloudy"
+        case Sun = "Sunny"
+        case Snow = "snow"
+        case SunnyWithClouds = "SunnyWithClouds"
+        var img: UIImage {
+            return UIImage(named: self.rawValue)!
     }
 }
